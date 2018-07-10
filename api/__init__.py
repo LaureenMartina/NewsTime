@@ -13,7 +13,7 @@ def is_url_image(url):
 
 def check_url(url):
     try:
-        headers={
+        headers = {
             "Range": "bytes=0-10",
             "User-Agent": "MyTestAgent",
             "Accept":"*/*"
@@ -34,6 +34,7 @@ if __name__ == '__main__':
     key = "8df18dcd35f649e3843d25920cdab720"
     sources = ["le-monde", "google-news-fr", "hacker-news", "liberation", "metro", "lequipe", "les-echos"]
     mode = ["top-headlines", "everything"]
+    language = ["fr", "us", "gb", "de"]
     choice_scr = 0
     choice_mode = 0
     articles = []
