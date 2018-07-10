@@ -4,7 +4,6 @@ import urllib
 import webbrowser
 
 import requests
-import html
 
 from api.Article import Article
 
@@ -15,9 +14,6 @@ def is_url_image(image_url):
     if r.headers["content-type"] in image_formats:
         return True
     return False
-
-
-
 
 if __name__ == '__main__':
 
@@ -97,13 +93,29 @@ if __name__ == '__main__':
         <link rel="stylesheet" href="style.css" />
         <title>NewspaperLand</title>
     </head>
-    <body>
-        <h3 id="title"> %s </h3>
-        <img src="%s" alt="image correspondant à l'article" style="width:500px; height:250px">
-        <p id="author"> %s </p>
-        <p><i> %s </i></p>
-        <p> %s </p>
+    <body style="background-image: url('paper.jpg')">
+        <div style="width: 800px;background-color: #6A6967;text-align:center;margin-left: 385px;
+            color: wheat;font-family: fantasy;font-size: -webkit-xxx-large;padding-bottom: 10px; padding-top: 10px
+            ;margin-top: 60px">
+                Nom journal
+        </div>
+        <div style="width: 800px;background-color: #AE2431;text-align:center;font-family:Algerian;margin-left: 385px;
+            padding-bottom: 10px; padding-top: 10px;margin-top: 10px">
+                <h3 id="title"> %s </h3>
+        </div>
+        <div style="background-color: #AFAAA4;background-color: #AFAAA4;width: 800px;margin-left: 385px;
+            margin-top: 10px;padding-bottom: 10px;">
+            <div>
+                <img src="%s" alt="image correspondant à l'article" style="width:500px;">
+                <div style="float: right;">
+                    <p id="author" style="float: right;margin-right: 10px"> %s </p>
+                    <p style="float: right;margin-right: 115px"><i> %s </i></p>
+                </div>
+            </div>
+            <p style="font-family: Verdana"> %s </p>
         <a href="%s"> %s </a>
+        </div>
+        
     </body>
     </html>
     """ % (news.get_title(), news.get_urlImage(), news.get_author(), news.get_published()[0:10], news.get_description(), news.get_link(), news.get_link())
