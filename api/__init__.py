@@ -1,9 +1,23 @@
+import mimetypes
 import random
+import urllib
 import webbrowser
 
 import requests
+import html
 
 from api.Article import Article
+
+
+def is_url_image(image_url):
+    image_formats = ("image/png", "image/jpeg", "image/jpg")
+    r = requests.head(image_url)
+    if r.headers["content-type"] in image_formats:
+        return True
+    return False
+
+
+
 
 if __name__ == '__main__':
 
@@ -70,6 +84,8 @@ if __name__ == '__main__':
     print(news)
 
 
+
+
     """ Ecriture et Affichage des informations dans le browser """
 
     file = open('articleView.html', 'w+')
@@ -77,7 +93,7 @@ if __name__ == '__main__':
     view = """
     <!doctype html>
     <head>
-        <meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/>
+        <meta http-equiv="Content-Type" content="text/html;charset="UTF-8"/>
         <link rel="stylesheet" href="style.css" />
         <title>NewspaperLand</title>
     </head>
@@ -98,4 +114,5 @@ if __name__ == '__main__':
     # Change path to reflect file location
     fileHTML = 'D:\PyCharmProjects\\' + 'articleView.html'
     webbrowser.open_new_tab('articleView.html')
+
 
