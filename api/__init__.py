@@ -1,5 +1,6 @@
 import random
 import webbrowser
+import html
 
 import requests
 
@@ -36,7 +37,7 @@ if __name__ == '__main__':
     while True:
         choice_mode = int(input("Veuillez sélectionner le mode de sélection (n° 0-1): "))
         if type(choice_mode) == int:
-            if choice_mode > 0 and choice_mode < 2:
+            if choice_mode >= 0 and choice_mode < 2:
                 break
         else:
             print('AttributeError: not a integer')
@@ -75,9 +76,10 @@ if __name__ == '__main__':
     file = open('articleView.html', 'w+')
 
     view = """
-    <!doctype html>
+    <!DOCTYPE html>
+    <html>
     <head>
-        <meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/>
+        <meta http-equiv="Content-Type" content="text/html;charset="UTF-8""/>
         <link rel="stylesheet" href="style.css" />
         <title>NewspaperLand</title>
     </head>

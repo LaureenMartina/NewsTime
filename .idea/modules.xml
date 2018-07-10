@@ -2,7 +2,8 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/.idea/PyCharmProjects.iml" filepath="$PROJECT_DIR$/.idea/PyCharmProjects.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/NewsPython.iml" filepath="$PROJECT_DIR$/.idea/NewsPython.iml" />
+      <module fileurl="file://D:\PyProjects\NewsPython\.idea\PyCharmProjects.iml" filepath="D:\PyProjects\NewsPython\.idea\PyCharmProjects.iml" />
     </modules>
   </component>
 </project>
