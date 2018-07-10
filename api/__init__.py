@@ -1,10 +1,33 @@
 import random
 import webbrowser
-import html
+import mimetypes, urllib
 
 import requests
 
 from api.Article import Article
+
+
+def is_url_image(url):
+    mimetype, encoding = mimetypes.guess_type(url)
+    return mimetype and mimetype.startswith('image')
+
+def check_url(url):
+    try:
+        headers={
+            "Range": "bytes=0-10",
+            "User-Agent": "MyTestAgent",
+            "Accept":"*/*"
+        }
+
+        req = urllib.Request(url, headers=headers)
+        response = urllib.urlopen(req)
+        return response.code in range(200, 209)
+    except Exception as ex:
+        return False
+
+def is_image_and_ready(url):
+    return is_url_image(url) and check_url(url)
+
 
 if __name__ == '__main__':
 
@@ -15,20 +38,17 @@ if __name__ == '__main__':
     choice_mode = 0
     articles = []
 
-
     """ Choix du journal """
 
     print("Journaux disponibles: Le Monde, Google News, Hacker News, Liberation, Metro, L'Equipe et Les Echos")
 
     while True:
-        choice_scr = int(input("Veuillez sélectionner votre journal (n° 0-6): "))
+        choice_scr = int(input("Veuillez sélectionner votre journal (n° 1-6): "))
         if type(choice_scr) == int:
-            if choice_scr > 0 and choice_scr <= 6:
+            if 0 < choice_scr <= 6:
                 break
         else:
             print('AttributeError: not a integer')
-
-
 
     """ Choix du mode """
 
@@ -41,7 +61,6 @@ if __name__ == '__main__':
                 break
         else:
             print('AttributeError: not a integer')
-
 
     url = ('https://newsapi.org/v2/{}?'
            'sources={}&'
@@ -63,13 +82,17 @@ if __name__ == '__main__':
     title = info["title"]
     descrip = info["description"]
     link = info["url"]
-    img = info["urlToImage"]
+
+    if is_image_and_ready(info["urlToImage"]):
+        img = info["urlToImage"]
+    else:
+        img = ""
+
     date = info["publishedAt"]
 
     """ Creation des Articles """
     news = Article(name, author, title, descrip, link, img, date)
     print(news)
-
 
     """ Ecriture et Affichage des informations dans le browser """
 
@@ -92,7 +115,8 @@ if __name__ == '__main__':
         <a href="%s"> %s </a>
     </body>
     </html>
-    """ % (news.get_title(), news.get_urlImage(), news.get_author(), news.get_published()[0:10], news.get_description(), news.get_link(), news.get_link())
+    """ % (news.get_title(), news.get_urlImage(), news.get_author(), news.get_published()[0:10], news.get_description(),
+           news.get_link(), news.get_link())
 
     file.write(view)
     file.close()
@@ -100,4 +124,3 @@ if __name__ == '__main__':
     # Change path to reflect file location
     fileHTML = 'D:\PyCharmProjects\\' + 'articleView.html'
     webbrowser.open_new_tab('articleView.html')
-
