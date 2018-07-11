@@ -100,7 +100,7 @@ if __name__ == '__main__':
                 Nom journal
         </div>
         <div style="width: 800px;background-color: #AE2431;text-align:center;font-family:Algerian;margin-left: 385px;
-            padding-bottom: 10px; padding-top: 10px;margin-top: 10px">
+            padding-bottom: 10px; padding-top: 10px;margin-top: 10px;color: white;font-size: 20px">
                 <h3 id="title"> %s </h3>
         </div>
         <div style="background-color: #AFAAA4;background-color: #AFAAA4;width: 800px;margin-left: 385px;
