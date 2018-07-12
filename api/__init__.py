@@ -111,7 +111,7 @@ if __name__ == '__main__':
             <div style="width: 800px;background-color: #6A6967;text-align:center;margin-left: 385px;
                 color: wheat;font-family: fantasy;font-size: -webkit-xxx-large;padding-bottom: 10px; padding-top: 10px
                 ;margin-top: 60px">
-                    Nom journal
+                    %s
             </div>
             <div style="width: 800px;background-color: #AE2431;text-align:center;font-family:Algerian;margin-left: 385px;
                 padding-bottom: 10px; padding-top: 10px;margin-top: 10px;color: white;font-size: 20px">
@@ -132,7 +132,7 @@ if __name__ == '__main__':
             
         </body>
     </html>
-    """ % (news.get_title(), news.get_urlImage(), news.get_author(), news.get_published()[0:10], news.get_description(),
+    """ % (news.get_newspaper(), news.get_title(), news.get_urlImage(), news.get_author(), news.get_published()[0:10], news.get_description(),
            news.get_link(), news.get_link())
 
     file.write(view)
