@@ -16,7 +16,7 @@ def check_url(url):
         headers = {
             "Range": "bytes=0-10",
             "User-Agent": "MyTestAgent",
-            "Accept":"*/*"
+            "Accept": "*/*"
         }
 
         req = urllib.Request(url, headers=headers)
@@ -44,9 +44,9 @@ if __name__ == '__main__':
     print("Journaux disponibles: Le Monde, Google News, Hacker News, Liberation, Metro, L'Equipe et Les Echos")
 
     while True:
-        choice_scr = int(input("Veuillez sélectionner votre journal (n° 1-6): "))
+        choice_scr = int(input("Veuillez sélectionner votre journal (n° 0-6): "))
         if type(choice_scr) == int:
-            if 0 < choice_scr <= 6:
+            if 0 <= choice_scr <= 6:
                 break
         else:
             print('AttributeError: not a integer')
@@ -102,19 +102,35 @@ if __name__ == '__main__':
     view = """
     <!DOCTYPE html>
     <html>
-    <head>
-        <meta http-equiv="Content-Type" content="text/html;charset="UTF-8""/>
-        <link rel="stylesheet" href="style.css" />
-        <title>NewspaperLand</title>
-    </head>
-    <body>
-        <h3 id="title"> %s </h3>
-        <img src="%s" alt="image correspondant à l'article" style="width:500px; height:250px">
-        <p id="author"> %s </p>
-        <p><i> %s </i></p>
-        <p> %s </p>
-        <a href="%s"> %s </a>
-    </body>
+        <head>
+            <meta http-equiv="Content-Type" content="text/html;charset="UTF-8"/>
+            <link rel="stylesheet" href="style.css" />
+            <title>NewspaperLand</title>
+        </head>
+        <body style="background-image: url('paper.jpg')">
+            <div style="width: 800px;background-color: #6A6967;text-align:center;margin-left: 385px;
+                color: wheat;font-family: fantasy;font-size: -webkit-xxx-large;padding-bottom: 10px; padding-top: 10px
+                ;margin-top: 60px">
+                    Nom journal
+            </div>
+            <div style="width: 800px;background-color: #AE2431;text-align:center;font-family:Algerian;margin-left: 385px;
+                padding-bottom: 10px; padding-top: 10px;margin-top: 10px;color: white;font-size: 20px">
+                    <h3 id="title"> %s </h3>
+            </div>
+            <div style="background-color: #AFAAA4;background-color: #AFAAA4;width: 800px;margin-left: 385px;
+                margin-top: 10px;padding-bottom: 10px;">
+                <div>
+                    <img src="%s" alt="image correspondant à l'article" style="width:500px;">
+                    <div style="float: right;">
+                        <p id="author" style="float: right;margin-right: 10px"> %s </p>
+                        <p style="float: right;margin-right: 115px"><i> %s </i></p>
+                    </div>
+                </div>
+                <p style="font-family: Verdana"> %s </p>
+            <a href="%s"> %s </a>
+            </div>
+            
+        </body>
     </html>
     """ % (news.get_title(), news.get_urlImage(), news.get_author(), news.get_published()[0:10], news.get_description(),
            news.get_link(), news.get_link())
